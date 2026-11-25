@@ -1,160 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Okhomes LTD is a real estate consultancy offering property sales, verification, valuation, survey and documentation services.">
-<title>OKHOMES LTD | Trusted Real Estate Consultancy</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#080d1a;--bar:#0b1226;--card:#0d1630;--line:#1a2542;--blue:#2a7af0;--text:#fff;--muted:#9aa7c0;color-scheme:dark;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html{scroll-padding-top:calc(80px + env(safe-area-inset-top,0px));scroll-behavior:smooth}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.7 Roboto,system-ui,sans-serif}
-h1,h2,h3{margin:0;line-height:1.15;font-weight:700}
-a{color:inherit}
-:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
-.wrap{max-width:1080px;margin:auto;padding:0 22px}
-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bar);border-bottom:1px solid var(--line)}
-header .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
-.logo{font:900 28px Roboto,sans-serif;letter-spacing:1.5px;text-decoration:none}
-.logo b{color:var(--blue)}
-nav{display:flex;gap:26px;align-items:center}
-nav a{text-decoration:none;font-weight:500;font-size:16px;color:var(--muted)}
-nav a:hover{color:#fff}
-#menu{display:none;background:none;border:0;color:#fff;cursor:pointer;padding:8px}
-@media(max-width:760px){#menu{display:block}
-nav{display:none;position:absolute;top:76px;left:0;right:0;flex-direction:column;align-items:flex-start;gap:0;background:var(--bar);border-bottom:1px solid var(--line);padding:8px 22px 18px}
-nav.open{display:flex}nav a{padding:12px 0;width:100%}}
-.btn{display:inline-block;border:0;cursor:pointer;background:var(--blue);color:#fff;font:700 18px Roboto,sans-serif;padding:16px 34px;border-radius:6px;text-decoration:none}
-.btn:hover{background:#3a88ff}
-.btn.ghost{background:transparent;border:1.5px solid var(--line);color:#fff}
-.hero{text-align:center;padding:96px 0 88px;background:radial-gradient(ellipse 60% 55% at 50% 45%,#14295a 0,transparent 70%)}
-.eyebrow{color:var(--blue);letter-spacing:.3em;font-size:14px;font-weight:500;text-transform:uppercase;margin-bottom:26px}
-.hero h1{font-size:clamp(40px,8vw,76px);font-weight:900}
-.hero h1 span{color:var(--blue);display:block}
-.hero p{max-width:600px;margin:26px auto 34px;color:var(--muted);font-size:19px}
-.hero .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.finder{max-width:760px;margin:56px auto 0;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px;display:grid;gap:14px;grid-template-columns:1fr 1fr auto;align-items:end;text-align:left}
-@media(max-width:700px){.finder{grid-template-columns:1fr}}
-label{display:block;font-size:14px;font-weight:500;color:var(--muted);margin-bottom:6px}
-select,input,textarea{width:100%;font:inherit;color:#fff;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:12px}
-.finder .btn{padding:13px 24px;font-size:16px}
-section{padding:80px 0;border-top:1px solid var(--line)}
-h2{font-size:clamp(32px,6vw,48px);font-weight:900;text-align:center;margin-bottom:14px}
-.lead{color:var(--muted);text-align:center;max-width:640px;margin:0 auto 44px}
-.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:26px}
-.card h3{font-size:20px;margin-bottom:8px}
-.card p{margin:0;color:var(--muted);font-size:16px}
-.card.k{border-top:3px solid var(--blue)}
-.about{max-width:760px;margin:auto;text-align:center;color:var(--muted)}
-.about strong{color:#fff}
-.quote{margin:34px auto 0;max-width:640px;border-left:3px solid var(--blue);padding:6px 0 6px 22px;text-align:left;font-size:22px;font-weight:500;color:#fff}
-.quote small{display:block;margin-top:8px;font-size:15px;color:var(--muted)}
-.steps{counter-reset:s}
-.steps .card{counter-increment:s}
-.steps .card::before{content:counter(s);display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--blue);font-weight:700;margin-bottom:14px}
-.score{text-align:center;margin-bottom:34px}
-.score b{font-size:64px;font-weight:900;color:var(--blue);line-height:1}
-.stars{color:var(--blue);letter-spacing:3px;font-size:22px}
-.rev{font-size:18px;color:#fff}
-.contact{display:grid;gap:40px;grid-template-columns:1fr 1.2fr;align-items:start}
-@media(max-width:760px){.contact{grid-template-columns:1fr}}
-.contact h2,.contact .lead{text-align:left;margin-left:0}
-form{display:grid;gap:14px}
-.msg{min-height:1.4em;font-weight:500;color:var(--blue)}
-footer{border-top:1px solid var(--line);background:var(--bar);padding:30px 0;color:var(--muted);font-size:15px}
-footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOVAK WORLD | Building Ideas. Creating Impact.</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header><div class="wrap"><a class="logo" href="#top">OK<b>HOMES</b></a>
-<button id="menu" aria-label="Open menu" aria-expanded="false"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
-<nav id="nav"><a href="#about">About</a><a href="#services">Services</a><a href="#process">Process</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a></nav></div></header>
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">JOVAK<span>WORLD</span></a>
+            <button id="menu-btn">☰</button>
+            <div class="nav-links" id="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#brands">Our Brands</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
 
-<main id="top">
-<div class="hero"><div class="wrap">
-<div class="eyebrow">Land · Homes · Commercial Property</div>
-<h1>Trusted Property Advice.<span>Secure Investments.</span></h1>
-<p>Okhomes LTD is a real estate consultancy providing property sales, verification, valuation and documentation for land, residential and commercial buildings.</p>
-<div class="btns"><a class="btn" href="#services">Explore Our Services</a><a class="btn ghost" href="#contact">Request a Consultation</a></div>
-<div class="finder" role="search">
-<div><label for="fa">I would like to</label><select id="fa"><option>Buy a property</option><option>Sell a property</option><option>Rent a property</option><option>Request a valuation</option><option>Verify a property</option></select></div>
-<div><label for="ft">Property type</label><select id="ft"><option>Residential land</option><option>Commercial land</option><option>Industrial land</option><option>Recreational land</option><option>Agricultural land</option><option>Home or apartment</option><option>Office space</option></select></div>
-<button class="btn" id="go" type="button">Get Started</button>
-</div></div></div>
+    <main>
+        <section class="hero" id="home">
+            <p class="tagline">INNOVATION • TECHNOLOGY • ENTERTAINMENT</p>
+            <h1>Building Ideas.<br><span>Creating Impact.</span></h1>
+            <p>We build digital brands and innovative experiences across technology, sports, gaming and entertainment.</p>
+            <a href="#brands" class="button">Explore Our Brands</a>
+        </section>
 
-<section id="about"><div class="wrap">
-<h2>Who We Are</h2>
-<div class="about"><p>Okhomes LTD was founded to connect clients with quality properties: residential, commercial, industrial, recreational and agricultural land, as well as commercial and residential buildings. We guide every client from property search to final documentation, with transparency and professionalism at each stage.</p>
-<div class="quote">“Changing lives through real estate is our topmost priority.”<small>Gift O. Jeffry, Okhomes LTD</small></div></div>
-</div></section>
+        <section class="about" id="about">
+            <h2>Who We Are</h2>
+            <p>JOVAK WORLD is a digital company focused on creating, developing and managing brands that connect with people around the world.</p>
+        </section>
 
-<section id="services"><div class="wrap">
-<h2>Our Services</h2><p class="lead">A complete range of real estate services, delivered by one dependable team.</p>
-<div class="grid">
-<div class="card k"><h3>Property Sales &amp; Acquisition</h3><p>Buying and selling of land, homes, apartments and office space.</p></div>
-<div class="card k"><h3>Property Search &amp; Due Diligence</h3><p>Independent verification of property and title before you commit.</p></div>
-<div class="card k"><h3>Valuation</h3><p>Accurate market valuations to support confident decisions.</p></div>
-<div class="card k"><h3>Survey Plans</h3><p>Professional surveys that define and protect your boundaries.</p></div>
-<div class="card k"><h3>Documentation</h3><p>Preparation and processing of property agreements and title documents.</p></div>
-<div class="card k"><h3>Land Clearing</h3><p>Site preparation to make your plot ready for development.</p></div>
-<div class="card k"><h3>Facility Management</h3><p>Reliable day-to-day management of your property.</p></div>
-<div class="card k"><h3>Post-Construction Cleaning</h3><p>Thorough cleaning for a finished, move-in-ready building.</p></div>
-</div></div></section>
+        <section class="brands" id="brands">
+            <h2>Our Brands</h2>
+            <p>Different industries. One vision.</p>
 
-<section id="process"><div class="wrap">
-<h2>How We Work</h2><p class="lead">A clear, structured process designed to protect your investment.</p>
-<div class="grid steps">
-<div class="card"><h3>Consultation</h3><p>We learn your requirements, location preferences and budget.</p></div>
-<div class="card"><h3>Search &amp; Verification</h3><p>We identify suitable properties and verify their details.</p></div>
-<div class="card"><h3>Inspection &amp; Survey</h3><p>We arrange site inspections, valuation and survey where needed.</p></div>
-<div class="card"><h3>Documentation &amp; Closing</h3><p>We handle the paperwork through to completion.</p></div>
-</div></div></section>
+            <div class="brand-grid">
+                <div class="brand-card">
+                    <h3>ProBuilds</h3>
+                    <p>Gaming guides and player development.</p>
+                </div>
 
-<section id="reviews"><div class="wrap">
-<h2>Client Reviews</h2>
-<div class="score"><b>4.6</b><div class="stars" aria-label="4.6 out of 5 stars">★★★★★</div><div style="color:var(--muted)">Rated on Google by 7 clients</div></div>
-<div class="grid">
-<div class="card rev">“Worth the money spent.” Praised for professionalism.</div>
-<div class="card rev">“Responsiveness and professionalism.”</div>
-<div class="card rev">“Professionalism.”</div>
-</div>
-<p style="margin-top:26px;text-align:center"><a href="https://www.google.com/maps/search/Okhomes+LTD" target="_blank" rel="noopener" style="color:var(--blue)">Read all reviews on Google</a></p>
-</div></section>
-
-<section id="contact"><div class="wrap contact">
-<div><h2>Contact Us</h2><p class="lead">Send us your enquiry and a member of our team will respond promptly. Your message opens in WhatsApp, ready to send.</p>
-<p><b>Phone / WhatsApp</b><br><a id="tel" href="#" style="color:var(--blue)">+234 816 724 9211</a></p>
-<p><b>Instagram</b><br>@Okhomes</p><p><b>YouTube</b><br>Okhomes</p></div>
-<form id="f" novalidate>
-<div><label for="n">Full name</label><input id="n" required autocomplete="name"></div>
-<div><label for="p">Phone number</label><input id="p" type="tel" required autocomplete="tel"></div>
-<div><label for="i">Service required</label><select id="i"><option>Buy a property</option><option>Sell a property</option><option>Rent a property</option><option>Request a valuation</option><option>Verify a property</option></select></div>
-<div><label for="t">Property type</label><select id="t"><option>Residential land</option><option>Commercial land</option><option>Industrial land</option><option>Recreational land</option><option>Agricultural land</option><option>Home or apartment</option><option>Office space</option></select></div>
-<div><label for="m">Message</label><textarea id="m" rows="4" placeholder="Preferred location, size and budget"></textarea></div>
-<button class="btn" type="submit">Send Enquiry</button><div class="msg" id="msg" role="status"></div>
-</form></div></section>
-</main>
-
-<footer><div class="wrap"><span>© <span id="yr"></span> Okhomes LTD. All rights reserved.</span><span>Real Estate Consultancy</span></div></footer>
-
-<script>
-var PHONE="2348167249211";
-var $=function(i){return document.getElementById(i)};
-$("yr").textContent=new Date().getFullYear();
-$("tel").href="tel:+"+PHONE;
-$("menu").onclick=function(){var o=$("nav").classList.toggle("open");this.setAttribute("aria-expanded",o)};
-$("nav").onclick=function(){$("nav").classList.remove("open")};
-$("go").onclick=function(){$("i").value=$("fa").value;$("t").value=$("ft").value;$("contact").scrollIntoView();$("n").focus({preventScroll:true})};
-$("f").onsubmit=function(e){e.preventDefault();
- if(!$("n").value.trim()||!$("p").value.trim()){$("msg").textContent="Please enter your name and phone number.";return}
- var txt="Hello Okhomes, my name is "+$("n").value.trim()+" ("+$("p").value.trim()+"). Service: "+$("i").value+". Property: "+$("t").value+"."+($("m").value.trim()?" "+$("m").value.trim():"");
- $("msg").textContent="Opening WhatsApp…";
- window.open("https://wa.me/"+PHONE+"?text="+encodeURIComponent(txt),"_blank","noopener")};
-</script>
-</body>
-    </html>
+                <div class="brand-card">
+                    <h3>ScoutZone</h3>
+                    <p>Discover
