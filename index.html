@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#171a22">
+
+<title>Nova Calculator</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    padding: 15px;
+    background: #0b0d12;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .3s;
+}
+
+.calculator {
+    width: 100%;
+    max-width: 430px;
+    padding: 20px;
+    background: #171a22;
+    border: 1px solid #292e39;
+    border-radius: 28px;
+    box-shadow: 0 20px 60px #0008;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: #ffad33;
+}
+
+.theme-btn {
+    width: 45px;
+    height: 42px;
+    border-radius: 14px;
+}
+
+.display-box {
+    min-height: 125px;
+    padding: 15px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.expression {
+    width: 100%;
+    min-height: 30px;
+    color: #9298a5;
+    text-align: right;
+    font-size: 18px;
+    overflow-wrap: anywhere;
+}
+
+.result {
+    width: 100%;
+    color: white;
+    font-size: 40px;
+    text-align: right;
+    overflow-wrap: anywhere;
+    margin-top: 8px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 9px;
+}
+
+button {
+    height: 60px;
+    border: none;
+    border-radius: 16px;
+    background: #272c36;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: .15s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:active {
+    transform: scale(.92);
+    filter: brightness(1.2);
+}
+
+.function {
+    background: #343947;
+    color: #e0e5ef;
+}
+
+.operator {
+    background: #ff9500;
+    font-size: 23px;
+}
+
+.equal {
+    background: #3478f6;
+    font-size: 24px;
+}
+
+.clear {
+    background: #c83b43;
+}
+
+.zero {
+    grid-column: span 2;
+}
+
+.history {
+    border-top: 1px solid #303541;
+    margin-top: 22px;
+    padding-top: 18px;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.history-header h3 {
+    color: #ffad33;
+    font-size: 20px;
+}
+
+.history-header button {
+    width: auto;
+    height: 38px;
+    padding: 0 15px;
+    font-size: 14px;
+}
+
+.history-list {
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.history-item {
+    background: #232833;
+    padding: 13px;
+    border-radius: 13px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.history-expression {
+    color: #a0a6b2;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.history-result {
+    font-size: 18px;
+}
+
+.clear-history {
+    width: 100%;
+    height: 45px;
+    margin-top: 12px;
+    background: #a83239;
+    font-size: 15px;
+}
+
+.empty-history {
+    text-align: center;
+    color: #858b97;
+    padding: 15px;
+}
+
+.hint {
+    text-align: center;
+    color: #858b97;
+    font-size: 12px;
+    margin-top: 12px;
+}
+
+/* LIGHT THEME */
+
+body.light {
+    background: #e9edf4;
+    color: #151820;
+}
+
+body.light .calculator {
+    background: white;
+    border-color: #dce1e9;
+}
+
+body.light .result {
+    color: #151820;
+}
+
+body.light .expression {
+    color: #747b88;
+}
+
+body.light button {
+    background: #e6eaf1;
+    color: #171a22;
+}
+
+body.light button.operator {
+    background: #ff9500;
+    color: white;
+}
+
+body.light button.equal {
+    background: #3478f6;
+    color: white;
+}
+
+body.light button.clear,
+body.light .clear-history {
+    background: #c83b43;
+    color: white;
+}
+
+body.light .function {
+    background: #d8deea;
+}
+
+body.light .history {
+    border-color: #dce1e9;
+}
+
+body.light .history-item {
+    background: #f0f3f8;
+}
+
+body.light .history-expression {
+    color: #777f8d;
+}
+
+body.light .empty-history,
+body.light .hint {
+    color: #777f8d;
+}
+
+@media(max-width:380px) {
+    .calculator {
+        padding: 14px;
+    }
+
+    button {
+        height: 54px;
+        font-size: 16px;
+    }
+
+    .buttons {
+        gap: 7px;
+    }
+
+    .result {
+        font-size: 32px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="calculator">
+
+    <div class="header">
+        <div class="logo">NOVA <span>CALC</span></div>
+
+        <button class="theme-btn"
+        onclick="toggleTheme()"
+        id="themeButton">☀</button>
+    </div>
+
+    <div class="display-box">
+        <div class="expression" id="expression"></div>
+        <div class="result" id="result">0</div>
+    </div>
+
+    <div class="buttons">
+
+        <button class="clear" onclick="clearAll()">AC</button>
+        <button class="function" onclick="backspace()">⌫</button>
+        <button class="function" onclick="append('%')">%</button>
+        <button class="function" onclick="append('(')">(</button>
+        <button class="function" onclick="append(')')">)</button>
+
+        <button class="function" onclick="append('sin(')">sin</button>
+        <button class="function" onclick="append('cos(')">cos</button>
+        <button class="function" onclick="append('tan(')">tan</button>
+        <button class="function" onclick="append('log(')">log</button>
+        <button class="function" onclick="append('ln(')">ln</button>
+
+        <button class="function" onclick="append('sqrt(')">√</button>
+        <button class="function" onclick="append('^2')">x²</button>
+        <button class="function" onclick="append('^')">xʸ</button>
+        <button class="function" onclick="append('1/(')">1/x</button>
+        <button class="function" onclick="append('π')">π</button>
+
+        <button class="function" onclick="append('ANS')">ANS</button>
+        <button class="function" onclick="toggleSign()">±</button>
+        <button class="function" onclick="append('!')">!</button>
+        <button onclick="append('7')">7</button>
+        <button onclick="append('8')">8</button>
+
+        <button onclick="append('9')">9</button>
+        <button class="operator" onclick="append('/')">÷</button>
+        <button onclick="append('4')">4</button>
+        <button onclick="append('5')">5</button>
+        <button onclick="append('6')">6</button>
+
+        <button class="operator" onclick="append('*')">×</button>
+        <button onclick="append('1')">1</button>
+        <button onclick="append('2')">2</button>
+        <button onclick="append('3')">3</button>
+        <button class="operator" onclick="append('-')">−</button>
+
+        <button class="operator" onclick="append('+')">+</button>
+        <button class="zero" onclick="append('0')">0</button>
+        <button onclick="append('.')">.</button>
+        <button class="equal" onclick="calculate()">=</button>
+
+    </div>
+
+    <div class="history">
+
+        <div class="history-header">
+            <h3>History</h3>
+
+            <button class="function"
+            onclick="toggleHistory()"
+            id="historyToggle">Hide</button>
+        </div>
+
+        <div id="historyContent">
+            <div class="history-list" id="historyList"></div>
+
+            <button class="clear-history"
+            onclick="clearHistory()">Clear History</button>
+
+            <div class="hint">
+                Tap a previous answer to reuse it.
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+let currentExpression = "";
+let lastAnswer = 0;
+let hasAnswer = false;
+let historyData = [];
+
+const expressionDisplay = document.getElementById("expression");
+const resultDisplay = document.getElementById("result");
+
+/* DISPLAY */
+
+function updateDisplay() {
+    expressionDisplay.textContent = currentExpression;
+    resultDisplay.textContent = currentExpression || "0";
+}
+
+/* INPUT */
+
+function append(value) {
+    currentExpression += value;
+    updateDisplay();
+}
+
+function clearAll() {
+    currentExpression = "";
+    updateDisplay();
+}
+
+function backspace() {
+    currentExpression = currentExpression.slice(0, -1);
+    updateDisplay();
+}
+
+function toggleSign() {
+    if (currentExpression) {
+        currentExpression = "-(" + currentExpression + ")";
+    }
+    updateDisplay();
+}
+
+/* MATHEMATICAL PARSER */
+
+function calculateExpression(input) {
+
+    let text = input.replace(/\s/g, "");
+    let position = 0;
+
+    function match(char) {
+        if (text[position] === char) {
+            position++;
+            return true;
+        }
+        return false;
+    }
+
+    function number() {
+        let start = position;
+
+        while (/[0-9.]/.test(text[position] || "")) {
+            position++;
+        }
+
+        if (start === position) throw Error("Number expected");
+
+        let value = Number(text.slice(start, position));
+
+        if (!Number.isFinite(value)) throw Error("Invalid number");
+
+        return value;
+    }
+
+    function primary() {
+
+        if (match("(")) {
+            let value = addSub();
+
+            if (!match(")")) throw Error("Missing bracket");
+
+            return value;
+        }
+
+        if (text.slice(position, position + 2) === "π") {
+            position++;
+            return Math.PI;
+        }
+
+        if (text.slice(position, position + 3).toUpperCase() === "ANS") {
+            position += 3;
+
+            if (!hasAnswer) throw Error("No previous answer");
+
+            return lastAnswer;
+        }
+
+        let functions = ["sqrt", "sin", "cos", "tan", "log", "ln"];
+
+        for (let fn of functions) {
+
+            if (text.slice(position, position + fn.length) === fn) {
+
+                position += fn.length;
+
+                if (!match("(")) throw Error("Missing bracket");
+
+                let value = addSub();
+
+                if (!match(")")) throw Error("Missing bracket");
+
+                switch(fn) {
+                    case "sqrt": return Math.sqrt(value);
+                    case "sin": return Math.sin(value * Math.PI / 180);
+                    case "cos": return Math.cos(value * Math.PI / 180);
+                    case "tan": return Math.tan(value * Math.PI / 180);
+                    case "log": return Math.log10(value);
+                    case "ln": return Math.log(value);
+                }
+            }
+        }
+
+        return number();
+    }
+
+    function postfix() {
+
+        let value = primary();
+
+        while (true) {
+
+            if (match("%")) {
+                value = value / 100;
+            }
+
+            else if (match("!")) {
+
+                if (value < 0 || !Number.isInteger(value) || value > 170) {
+                    throw Error("Invalid factorial");
+                }
+
+                let answer = 1;
+
+                for (let i = 2; i <= value; i++) {
+                    answer *= i;
+                }
+
+                value = answer;
+            }
+
+            else break;
+        }
+
+        return value;
+    }
+
+    function power() {
+        let value = postfix();
+
+        if (match("^")) {
+            value = Math.pow(value, unary());
+        }
+
+        return value;
+    }
+
+    function unary() {
+        if (match("+")) return unary();
+        if (match("-")) return -unary();
+
+        return power();
+    }
+
+    function multiply() {
+
+        let value = unary();
+
+        while (true) {
+
+            if (match("*")) value *= unary();
+            else if (match("/")) value /= unary();
+            else break;
+        }
+
+        return value;
+    }
+
+    function addSub() {
+
+        let value = multiply();
+
+        while (true) {
+
+            if (match("+")) value += multiply();
+            else if (match("-")) value -= multiply();
+            else break;
+        }
+
+        return value;
+    }
+
+    let answer = addSub();
+
+    if (position !== text.length) {
+        throw Error("Invalid expression");
+    }
+
+    if (!Number.isFinite(answer)) {
+        throw Error("Math error");
+    }
+
+    return answer;
+}
+
+/* CALCULATE */
+
+function calculate() {
+
+    if (!currentExpression) return;
+
+    try {
+
+        let expression = currentExpression;
+
+        let answer = calculateExpression(expression);
+
+        let formatted = Number(answer.toPrecision(12)).toString();
+
+        lastAnswer = Number(formatted);
+        hasAnswer = true;
+
+        expressionDisplay.textContent = expression + " =";
+        resultDisplay.textContent = formatted;
+
+        addHistory(expression, formatted);
+
+        currentExpression = formatted;
+
+    } catch(error) {
+
+        resultDisplay.textContent

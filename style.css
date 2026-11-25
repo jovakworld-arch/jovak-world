@@ -1,0 +1,221 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #080d18;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+header {
+    background: #0c1424;
+    border-bottom: 1px solid #1d2b43;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: auto;
+    padding: 18px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-size: 23px;
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #3185ff;
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+}
+
+.nav-links a {
+    color: #c5d0e0;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.nav-links a:hover {
+    color: #3185ff;
+}
+
+#menu-btn {
+    display: none;
+    background: none;
+    color: white;
+    border: none;
+    font-size: 25px;
+}
+
+.hero {
+    min-height: 600px;
+    padding: 130px 8%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background:
+        radial-gradient(circle at center, #142b4d 0%, #080d18 65%);
+}
+
+.tagline {
+    color: #438fff;
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-size: clamp(38px, 7vw, 70px);
+    line-height: 1.15;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: #438fff;
+}
+
+.hero > p:not(.tagline) {
+    color: #aab8ca;
+    max-width: 600px;
+    margin-bottom: 35px;
+}
+
+.button {
+    background: #2878ed;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.button:hover {
+    background: #1559bd;
+}
+
+.about,
+.brands,
+.contact {
+    padding: 90px 8%;
+    text-align: center;
+}
+
+.about h2,
+.brands h2,
+.contact h2 {
+    font-size: 34px;
+    margin-bottom: 18px;
+}
+
+.about p,
+.brands > p,
+.contact p {
+    color: #aab8ca;
+    max-width: 650px;
+    margin: auto;
+}
+
+.brands {
+    background: #0c1424;
+}
+
+.brand-grid {
+    max-width: 1100px;
+    margin: 45px auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.brand-card {
+    background: #111e32;
+    border: 1px solid #223653;
+    padding: 35px 22px;
+    border-radius: 9px;
+    transition: 0.3s;
+}
+
+.brand-card:hover {
+    transform: translateY(-6px);
+    border-color: #438fff;
+}
+
+.brand-card h3 {
+    color: #438fff;
+    font-size: 21px;
+    margin-bottom: 12px;
+}
+
+.brand-card p {
+    color: #aab8ca;
+    font-size: 14px;
+}
+
+.contact {
+    background: #080d18;
+}
+
+footer {
+    background: #050912;
+    border-top: 1px solid #1d2b43;
+    padding: 25px;
+    text-align: center;
+    color: #8492a6;
+    font-size: 13px;
+}
+
+@media (max-width: 700px) {
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    #menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        padding-top: 20px;
+        gap: 15px;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .hero {
+        min-height: 520px;
+        padding: 90px 7%;
+    }
+
+    .brand-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about,
+    .brands,
+    .contact {
+        padding: 65px 7%;
+    }
+}
